@@ -39,6 +39,15 @@ Common.moduleSelector = (moduleName) => {
     case 'module_slide_show':
       module = require("./module_slide_show.model.js");
       break;
+    case 'module_form_elements':
+      module = require("./module_form_elements.model.js");
+      break;
+    case 'module_form_builder':
+      module = require("./module_form_builder.model.js");
+      break;
+    case 'module_form_data':
+    module = require("./module_form_data.model.js");
+    break;
   }
 
   return module;
