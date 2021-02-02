@@ -1,7 +1,7 @@
 -- --------------------------------------------------------
--- Host:                         127.0.0.1
--- Server version:               10.4.14-MariaDB - mariadb.org binary distribution
--- Server OS:                    Win64
+-- Host:                         34.83.103.207
+-- Server version:               5.7.32-0ubuntu0.16.04.1 - (Ubuntu)
+-- Server OS:                    Linux
 -- HeidiSQL Version:             11.0.0.5919
 -- --------------------------------------------------------
 
@@ -11,12 +11,8 @@
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 
-
--- Dumping database structure for test
-CREATE DATABASE IF NOT EXISTS `test` /*!40100 DEFAULT CHARACTER SET latin1 */;
-USE `test`;
-
--- Dumping structure for table test.module_button
+-- Dumping structure for table cms_master.module_button
+DROP TABLE IF EXISTS `module_button`;
 CREATE TABLE IF NOT EXISTS `module_button` (
   `buttonId` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `internalName` varchar(1024) NOT NULL,
@@ -34,11 +30,11 @@ CREATE TABLE IF NOT EXISTS `module_button` (
   `textAlign` varchar(10) DEFAULT 'center',
   `radius` varchar(128) DEFAULT NULL,
   `createdAt` datetime NOT NULL,
-  `updatedAt` datetime NOT NULL DEFAULT '1999-01-01 00:00:00' ON UPDATE current_timestamp(),
+  `updatedAt` datetime NOT NULL DEFAULT '1999-01-01 00:00:00' ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`buttonId`)
 ) ENGINE=InnoDB AUTO_INCREMENT=61 DEFAULT CHARSET=utf8;
 
--- Dumping data for table test.module_button: ~53 rows (approximately)
+-- Dumping data for table cms_master.module_button: ~54 rows (approximately)
 DELETE FROM `module_button`;
 /*!40000 ALTER TABLE `module_button` DISABLE KEYS */;
 INSERT INTO `module_button` (`buttonId`, `internalName`, `settingId`, `type`, `icon`, `size`, `iconAlign`, `fillColor`, `hoverColor`, `title`, `ctaLink`, `linkColor`, `linkHoverColor`, `textAlign`, `radius`, `createdAt`, `updatedAt`) VALUES
@@ -98,7 +94,8 @@ INSERT INTO `module_button` (`buttonId`, `internalName`, `settingId`, `type`, `i
 	(60, 'qwr', 85, 'image', NULL, '20%', NULL, '#333', NULL, '<p>sdfg</p>', NULL, NULL, NULL, NULL, NULL, '2020-12-01 15:22:18', '2020-12-01 15:23:56');
 /*!40000 ALTER TABLE `module_button` ENABLE KEYS */;
 
--- Dumping structure for table test.module_card
+-- Dumping structure for table cms_master.module_card
+DROP TABLE IF EXISTS `module_card`;
 CREATE TABLE IF NOT EXISTS `module_card` (
   `cardId` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `internalName` varchar(1024) NOT NULL,
@@ -107,16 +104,16 @@ CREATE TABLE IF NOT EXISTS `module_card` (
   `coverImageId` bigint(20) DEFAULT NULL,
   `title` varchar(4096) DEFAULT NULL,
   `subhead` varchar(1024) DEFAULT NULL,
-  `description` text DEFAULT NULL,
+  `description` text,
   `linkButtonId` bigint(20) DEFAULT NULL,
-  `horizontalAlign` text DEFAULT NULL,
-  `verticalAlign` text DEFAULT NULL,
+  `horizontalAlign` text,
+  `verticalAlign` text,
   `createdAt` datetime NOT NULL,
-  `updatedAt` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE current_timestamp(),
+  `updatedAt` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`cardId`)
-) ENGINE=InnoDB AUTO_INCREMENT=73 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=76 DEFAULT CHARSET=utf8;
 
--- Dumping data for table test.module_card: ~63 rows (approximately)
+-- Dumping data for table cms_master.module_card: ~65 rows (approximately)
 DELETE FROM `module_card`;
 /*!40000 ALTER TABLE `module_card` DISABLE KEYS */;
 INSERT INTO `module_card` (`cardId`, `internalName`, `settingId`, `type`, `coverImageId`, `title`, `subhead`, `description`, `linkButtonId`, `horizontalAlign`, `verticalAlign`, `createdAt`, `updatedAt`) VALUES
@@ -179,13 +176,205 @@ INSERT INTO `module_card` (`cardId`, `internalName`, `settingId`, `type`, `cover
 	(66, 'EMO-3ROW-CONTENTBLOCK-ReportMeasure', 86, NULL, NULL, NULL, '<h4>Report and measure your sites performance</h4>', NULL, NULL, NULL, NULL, '2020-11-05 05:07:41', '2020-11-05 05:16:21'),
 	(67, 'EMO-3ROW-CONBLOCK-Optimise Site Goals', 86, NULL, NULL, NULL, '<h4>Optimise your site to fulfill your goals</h4>', NULL, NULL, NULL, NULL, '2020-11-05 05:08:49', '2020-11-05 05:17:12'),
 	(68, 'gregs', NULL, 'text', NULL, '<p>Totle is something like this</p>', '<p><strong class="ql-font-serif">Hello form the header<span class="ql-cursor">﻿</span></strong></p>', '<p>And we descirbe it here</p>', 57, 'center', 'center', '2020-11-05 06:42:28', '2020-11-05 06:42:28'),
-	(69, 'Company Info', NULL, NULL, 64, NULL, '<p>Hello this is about us page</p>', '<p>Some lorem ipsum code here</p>', NULL, 'center', NULL, '2020-11-10 09:09:44', '2020-11-10 09:09:44'),
+	(69, 'Company Info', NULL, 'image', 64, NULL, '<p>Hello this is about us page</p>', '<p>Some lorem ipsum code here</p>', NULL, 'center', NULL, '2020-11-10 09:09:44', '2021-01-25 20:20:07'),
 	(70, 'CB:blah blah 01', 162, NULL, NULL, '<p>AND A TITLE</p>', '<p>A HEADING</p>', '<p>AND A DESCRIPTION HERE</p>', NULL, NULL, NULL, '2020-11-30 06:21:00', '2020-11-30 06:22:37'),
 	(71, 'CB:Blah Blah 02', 162, NULL, NULL, '<p>TITLE HERE</p>', '<p>THIS I NUMBER 2</p>', NULL, NULL, NULL, NULL, '2020-11-30 06:25:36', '2020-11-30 06:26:23'),
-	(72, 'CB:Home', 164, 'image', 66, '<p>AND TITLE</p>', '<p>ANOTHER HEADING</p>', '<p>Lots of body copy can go here......</p>', NULL, NULL, NULL, '2020-11-30 06:31:06', '2020-11-30 07:08:41');
+	(72, 'CB:Home', 164, 'image', 66, '<p>AND TITLE</p>', '<p>ANOTHER HEADING</p>', '<p>Lots of body copy can go here......</p>', NULL, NULL, NULL, '2020-11-30 06:31:06', '2020-11-30 07:08:41'),
+	(73, 'LEFT SIDE CONTENT', 173, 'text', NULL, '<p>THE TITLE</p>', '<p>THIS IS THE HEADING</p>', '<p>Here is where you would type the description. <span style="color: rgb(0, 0, 0);">Here is where you would type the description. Here is where you would type the description. </span></p>', NULL, NULL, NULL, '2021-01-25 04:38:27', '2021-01-25 04:39:32'),
+	(74, 'chicken page content', NULL, NULL, 73, '<p>automated chicken door seo</p>', '<h1>Automated Chicken Door</h1>', '<p>This is our chicken house complete with an automated chicken door.</p>', 57, 'center', 'center', '2021-01-28 00:51:18', '2021-01-28 00:51:18');
 /*!40000 ALTER TABLE `module_card` ENABLE KEYS */;
 
--- Dumping structure for table test.module_header
+-- Dumping structure for table cms_master.module_form_builder
+DROP TABLE IF EXISTS `module_form_builder`;
+CREATE TABLE IF NOT EXISTS `module_form_builder` (
+  `formBuilderId` int(20) unsigned NOT NULL AUTO_INCREMENT,
+  `internalName` varchar(255) NOT NULL,
+  `settingId` int(11) DEFAULT NULL,
+  `label` varchar(200) DEFAULT NULL,
+  `tickBox` varchar(200) DEFAULT NULL,
+  `hFont` varchar(200) DEFAULT NULL,
+  `hFontSize` varchar(200) DEFAULT NULL,
+  `hFontColor` varchar(20) NOT NULL DEFAULT '#000000',
+  `spacing` varchar(200) DEFAULT NULL,
+  `formDesign` varchar(200) DEFAULT NULL,
+  `formDesignColor` varchar(200) DEFAULT NULL,
+  `labelPlacement` varchar(200) DEFAULT NULL,
+  `lFont` varchar(200) DEFAULT NULL,
+  `lFontSize` varchar(200) DEFAULT NULL,
+  `lFontColor` varchar(20) NOT NULL DEFAULT '#000000',
+  `googleRecapture` varchar(200) DEFAULT NULL,
+  `emailAdress` varchar(200) DEFAULT NULL,
+  `submitButtonText` varchar(200) DEFAULT NULL,
+  `submitButtonStyle` varchar(200) DEFAULT NULL,
+  `forwardingUrl` varchar(200) DEFAULT NULL,
+  `createdAt` datetime DEFAULT NULL,
+  `updatedAt` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`formBuilderId`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=204 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+
+-- Dumping data for table cms_master.module_form_builder: ~4 rows (approximately)
+DELETE FROM `module_form_builder`;
+/*!40000 ALTER TABLE `module_form_builder` DISABLE KEYS */;
+INSERT INTO `module_form_builder` (`formBuilderId`, `internalName`, `settingId`, `label`, `tickBox`, `hFont`, `hFontSize`, `hFontColor`, `spacing`, `formDesign`, `formDesignColor`, `labelPlacement`, `lFont`, `lFontSize`, `lFontColor`, `googleRecapture`, `emailAdress`, `submitButtonText`, `submitButtonStyle`, `forwardingUrl`, `createdAt`, `updatedAt`) VALUES
+	(199, 'Form One', 170, 'test form', 'On', 'Oswald', '44px', '#04D5B3', '30px', 'Underline', '#04D5B3', 'Above Left', 'Montserrat', '20px', '#04D5B3', 'Turn On', 'toptaldev93@gmail.com', 'Submit Now', '#FF0083', 'http://www.emoceanstudios.com.au', '2021-01-10 04:25:01', '2021-01-28 18:40:07'),
+	(200, 'Test Two', 170, 'Test Two', 'On', 'Cairo', '40px', 'blue', '25px', 'Border', NULL, 'Above Left', 'Exo 2', '24px', 'green', 'Turn On', 'toptaldev93@gmail.com', 'Submit3', 'blue', 'http://34.83.103.207:3000/emocean', '2021-01-10 06:38:48', '2021-01-28 18:40:15'),
+	(202, 'FORM:DesignBrief', 175, 'FORM HEADING', NULL, NULL, '32px', '#FF0083', '20px', 'Underline', '#FF0083', 'Above Center', 'Nunito', '24px', '#FF0083', 'Turn On', 'www0327333@gmail.com', 'SEND', 'BLACK', 'www.nfl.com', '2021-01-27 04:48:20', '2021-01-28 20:20:04'),
+	(203, 'AS:FORM:ContactDONE', 176, 'Contact Form', 'On', 'Lato', '40px', '#FF0083', '30px', 'Underline', '#FF0083', 'Inside Label', 'Lato', '16px', '#FF0083', 'Turn On', 'parkersomeone@hotmail.com', 'SEND MESSAGE', '#FF0083', 'http://www.virgin.com', '2021-01-27 06:13:06', '2021-01-28 23:20:17');
+/*!40000 ALTER TABLE `module_form_builder` ENABLE KEYS */;
+
+-- Dumping structure for table cms_master.module_form_builder_box
+DROP TABLE IF EXISTS `module_form_builder_box`;
+CREATE TABLE IF NOT EXISTS `module_form_builder_box` (
+  `formBuilderBoxId` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `formBuilderId` int(11) DEFAULT NULL,
+  `moduleName` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
+  `moduleId` bigint(20) DEFAULT NULL,
+  `createdAt` datetime DEFAULT NULL,
+  `updatedAt` datetime DEFAULT NULL,
+  PRIMARY KEY (`formBuilderBoxId`)
+) ENGINE=InnoDB AUTO_INCREMENT=3845 DEFAULT CHARSET=utf8mb4;
+
+-- Dumping data for table cms_master.module_form_builder_box: ~28 rows (approximately)
+DELETE FROM `module_form_builder_box`;
+/*!40000 ALTER TABLE `module_form_builder_box` DISABLE KEYS */;
+INSERT INTO `module_form_builder_box` (`formBuilderBoxId`, `formBuilderId`, `moduleName`, `moduleId`, `createdAt`, `updatedAt`) VALUES
+	(3797, 199, 'module_form_elements', 203, '2021-01-28 18:40:07', '2021-01-28 18:40:07'),
+	(3798, 199, 'module_form_elements', 204, '2021-01-28 18:40:07', '2021-01-28 18:40:07'),
+	(3799, 199, 'module_form_elements', 212, '2021-01-28 18:40:07', '2021-01-28 18:40:07'),
+	(3800, 199, 'module_form_elements', 217, '2021-01-28 18:40:07', '2021-01-28 18:40:07'),
+	(3801, 199, 'module_form_elements', 211, '2021-01-28 18:40:07', '2021-01-28 18:40:07'),
+	(3802, 199, 'module_form_elements', 222, '2021-01-28 18:40:07', '2021-01-28 18:40:07'),
+	(3803, 199, 'module_form_elements', 224, '2021-01-28 18:40:07', '2021-01-28 18:40:07'),
+	(3804, 199, 'module_form_elements', 226, '2021-01-28 18:40:07', '2021-01-28 18:40:07'),
+	(3805, 199, 'module_form_elements', 229, '2021-01-28 18:40:07', '2021-01-28 18:40:07'),
+	(3806, 199, 'module_form_elements', 230, '2021-01-28 18:40:07', '2021-01-28 18:40:07'),
+	(3807, 199, 'module_form_elements', 231, '2021-01-28 18:40:07', '2021-01-28 18:40:07'),
+	(3808, 199, 'module_form_elements', 209, '2021-01-28 18:40:07', '2021-01-28 18:40:07'),
+	(3809, 199, 'module_form_elements', 210, '2021-01-28 18:40:07', '2021-01-28 18:40:07'),
+	(3810, 200, 'module_form_elements', 203, '2021-01-28 18:40:15', '2021-01-28 18:40:15'),
+	(3811, 200, 'module_multi_columns', 106, '2021-01-28 18:40:15', '2021-01-28 18:40:15'),
+	(3812, 200, 'module_multi_columns', 107, '2021-01-28 18:40:15', '2021-01-28 18:40:15'),
+	(3813, 200, 'module_form_elements', 211, '2021-01-28 18:40:15', '2021-01-28 18:40:15'),
+	(3814, 200, 'module_form_elements', 222, '2021-01-28 18:40:15', '2021-01-28 18:40:15'),
+	(3815, 200, 'module_form_elements', 232, '2021-01-28 18:40:15', '2021-01-28 18:40:15'),
+	(3816, 200, 'module_form_elements', 227, '2021-01-28 18:40:15', '2021-01-28 18:40:15'),
+	(3817, 200, 'module_form_elements', 209, '2021-01-28 18:40:15', '2021-01-28 18:40:15'),
+	(3818, 200, 'module_form_elements', 210, '2021-01-28 18:40:15', '2021-01-28 18:40:15'),
+	(3823, 202, 'module_form_elements', 233, '2021-01-28 20:20:04', '2021-01-28 20:20:04'),
+	(3824, 202, 'module_form_elements', 240, '2021-01-28 20:20:04', '2021-01-28 20:20:04'),
+	(3841, 203, 'module_form_elements', 234, '2021-01-28 23:20:17', '2021-01-28 23:20:17'),
+	(3842, 203, 'module_form_elements', 235, '2021-01-28 23:20:17', '2021-01-28 23:20:17'),
+	(3843, 203, 'module_form_elements', 236, '2021-01-28 23:20:17', '2021-01-28 23:20:17'),
+	(3844, 203, 'module_form_elements', 238, '2021-01-28 23:20:17', '2021-01-28 23:20:17');
+/*!40000 ALTER TABLE `module_form_builder_box` ENABLE KEYS */;
+
+-- Dumping structure for table cms_master.module_form_data
+DROP TABLE IF EXISTS `module_form_data`;
+CREATE TABLE IF NOT EXISTS `module_form_data` (
+  `formDataId` int(20) unsigned NOT NULL AUTO_INCREMENT,
+  `formBuilderId` int(20) DEFAULT NULL,
+  `formName` varchar(50) CHARACTER SET utf8 DEFAULT NULL,
+  `formDataKey` varchar(500) CHARACTER SET utf8 DEFAULT NULL,
+  `formDataValue` varchar(500) CHARACTER SET utf8 DEFAULT NULL,
+  `createdAt` varchar(500) CHARACTER SET utf8 DEFAULT NULL,
+  PRIMARY KEY (`formDataId`)
+) ENGINE=InnoDB AUTO_INCREMENT=2224 DEFAULT CHARSET=utf8mb4;
+
+-- Dumping data for table cms_master.module_form_data: ~32 rows (approximately)
+DELETE FROM `module_form_data`;
+/*!40000 ALTER TABLE `module_form_data` DISABLE KEYS */;
+INSERT INTO `module_form_data` (`formDataId`, `formBuilderId`, `formName`, `formDataKey`, `formDataValue`, `createdAt`) VALUES
+	(2192, 199, 'test form', 'First Name', 'karl', '2021-01-28 19:09:25.354'),
+	(2193, 199, 'test form', 'Email', '', '2021-01-28 19:09:25.354'),
+	(2194, 199, 'test form', 'Password', '', '2021-01-28 19:09:25.354'),
+	(2195, 199, 'test form', 'Age', '', '2021-01-28 19:09:25.354'),
+	(2196, 199, 'test form', 'Country.', NULL, '2021-01-28 19:09:25.354'),
+	(2197, 199, 'test form', 'Date_picker', '', '2021-01-28 19:09:25.354'),
+	(2198, 199, 'test form', 'Time_selector', '', '2021-01-28 19:09:25.354'),
+	(2199, 199, 'test form', 'Choose your items which you are in..', '', '2021-01-28 19:09:25.354'),
+	(2200, 199, 'test form', 'Choose your career..', '', '2021-01-28 19:09:25.354'),
+	(2201, 199, 'test form', 'Choose your gender..', NULL, '2021-01-28 19:09:25.354'),
+	(2202, 199, 'test form', 'Choose your work experience.', NULL, '2021-01-28 19:09:25.354'),
+	(2203, 199, 'test form', 'Are you married?', NULL, '2021-01-28 19:09:25.354'),
+	(2204, 199, 'test form', 'Do you have children?', NULL, '2021-01-28 19:09:25.354'),
+	(2205, 199, 'test form', 'First Name', 'karl', '2021-01-28 19:10:24.048'),
+	(2206, 199, 'test form', 'Email', 'karl@gmail.com', '2021-01-28 19:10:24.048'),
+	(2207, 199, 'test form', 'Password', '', '2021-01-28 19:10:24.048'),
+	(2208, 199, 'test form', 'Age', '', '2021-01-28 19:10:24.048'),
+	(2209, 199, 'test form', 'Country.', NULL, '2021-01-28 19:10:24.048'),
+	(2210, 199, 'test form', 'Date_picker', '', '2021-01-28 19:10:24.048'),
+	(2211, 199, 'test form', 'Time_selector', '', '2021-01-28 19:10:24.048'),
+	(2212, 199, 'test form', 'Choose your items which you are in..', '', '2021-01-28 19:10:24.048'),
+	(2213, 199, 'test form', 'Choose your career..', '', '2021-01-28 19:10:24.048'),
+	(2214, 199, 'test form', 'Choose your gender..', NULL, '2021-01-28 19:10:24.048'),
+	(2215, 199, 'test form', 'Choose your work experience.', NULL, '2021-01-28 19:10:24.048'),
+	(2216, 199, 'test form', 'Are you married?', NULL, '2021-01-28 19:10:24.048'),
+	(2217, 199, 'test form', 'Do you have children?', NULL, '2021-01-28 19:10:24.048'),
+	(2218, 202, 'FORM HEADING', 'Company Name', 'karl', '2021-01-28 20:34:54.498'),
+	(2219, 202, 'FORM HEADING', 'Textarea Test', 'aaaaaaaaaaaaaaaaaaaaaaa\nbbbbbbbbbbbbbbbbbbbbbbb', '2021-01-28 20:34:54.498'),
+	(2220, 203, 'Contact Form', 'Name', 'David Test', '2021-01-28 22:53:04.452'),
+	(2221, 203, 'Contact Form', 'Email', 'test@test.com', '2021-01-28 22:53:04.452'),
+	(2222, 203, 'Contact Form', 'Subject', 'Subject Test', '2021-01-28 22:53:04.452'),
+	(2223, 203, 'Contact Form', 'Message', 'Right now it is 9:52am TEST', '2021-01-28 22:53:04.452');
+/*!40000 ALTER TABLE `module_form_data` ENABLE KEYS */;
+
+-- Dumping structure for table cms_master.module_form_elements
+DROP TABLE IF EXISTS `module_form_elements`;
+CREATE TABLE IF NOT EXISTS `module_form_elements` (
+  `formElementsId` int(20) unsigned NOT NULL AUTO_INCREMENT,
+  `internalName` varchar(255) NOT NULL,
+  `settingId` int(11) DEFAULT NULL,
+  `label` varchar(200) DEFAULT NULL,
+  `columnelementType` varchar(200) DEFAULT NULL,
+  `defaultValue` varchar(200) DEFAULT NULL,
+  `replaceFolder` varchar(200) DEFAULT NULL,
+  `createdAt` datetime DEFAULT NULL,
+  `updatedAt` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`formElementsId`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=241 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+
+-- Dumping data for table cms_master.module_form_elements: ~34 rows (approximately)
+DELETE FROM `module_form_elements`;
+/*!40000 ALTER TABLE `module_form_elements` DISABLE KEYS */;
+INSERT INTO `module_form_elements` (`formElementsId`, `internalName`, `settingId`, `label`, `columnelementType`, `defaultValue`, `replaceFolder`, `createdAt`, `updatedAt`) VALUES
+	(203, 'Name', NULL, 'First Name', 'Text', '444', 'Write the name here.', '2021-01-03 19:11:49', '2021-01-22 03:06:16'),
+	(204, 'Email1', NULL, 'Email', 'Email', '', 'Write your email here.', '2021-01-03 19:35:39', '2021-01-10 05:36:20'),
+	(205, 'formelement3', NULL, 'Password', 'Text', NULL, '12345', '2021-01-08 03:55:55', '2021-01-08 03:55:55'),
+	(206, 'formelement4', NULL, 'Country', 'Dropdown', 'UK,US,Germany,Spain,Ukrine', NULL, '2021-01-08 03:58:05', '2021-01-08 03:58:05'),
+	(207, 'formelement5', NULL, 'Gender', 'Check', 'University_graduation,seblings,sigle,married', NULL, '2021-01-08 03:59:34', '2021-01-08 04:02:00'),
+	(208, 'radio1', NULL, 'radio', 'Radio', 'male,female,others', '', '2021-01-08 04:31:43', '2021-01-09 06:06:31'),
+	(209, 'Date_picker1', NULL, 'Date_picker', 'Date Picker', NULL, 'Select a date here.', '2021-01-08 04:33:15', '2021-01-10 04:28:48'),
+	(210, 'Time_selector1', NULL, 'Time_selector', 'Time Selector', NULL, 'Select time here.', '2021-01-08 04:34:11', '2021-01-10 04:28:57'),
+	(211, 'Dropdown1', NULL, 'Country.', 'Dropdown', 'US,UK,Spain,Germany,Ukrine,Canada', 'Choose your country.', '2021-01-08 05:00:10', '2021-01-11 12:46:09'),
+	(212, 'Password1', NULL, 'Password', 'Password', NULL, 'Write your password here.', '2021-01-08 05:02:12', '2021-01-10 05:36:56'),
+	(213, 'Toggle1_for_multi_axies', NULL, 'Choose you are', 'Toggle', 'university_graduated,seblings,single,have_relatives,5_more_friends', NULL, '2021-01-08 05:05:22', '2021-01-09 07:12:43'),
+	(215, 'Text1_for_muti_axies_module', NULL, 'Text for multi axies', 'Text', NULL, 'Write the text for multi axies', '2021-01-08 05:25:59', '2021-01-08 05:29:11'),
+	(216, 'Checkbox1_for_multi_axies', NULL, 'Checkbox1 for multiaxies', 'Check', 'aa,bb,cc,dd,ee', NULL, '2021-01-08 05:37:41', '2021-01-09 05:49:33'),
+	(217, 'Number2', NULL, 'Age', 'Number', NULL, 'Write your age in number.', '2021-01-08 05:42:52', '2021-01-11 12:45:45'),
+	(220, 'check1', NULL, 'check', 'Check', 'check1,check2,check3', 'bbbbbb', '2021-01-09 06:07:18', '2021-01-09 06:53:57'),
+	(222, 'Check1', NULL, 'Choose your items which you are in..', 'Check', 'Have a bachelor degree,Have a job, Like sprots,Got A+ in university,Have a project now', NULL, '2021-01-09 06:59:48', '2021-01-25 21:55:40'),
+	(223, 'radio2', NULL, 'Radio2', 'Radio', 'radio1,radio2,radio3', NULL, '2021-01-09 07:15:05', '2021-01-10 04:29:11'),
+	(224, 'Toggle1', NULL, 'Are you married?', 'Toggle', 'toggle', '', '2021-01-09 07:30:57', '2021-01-10 05:38:12'),
+	(225, 'Toggle2_for_multi_axies', NULL, 'toggle2', 'Toggle', NULL, 'toggle value', '2021-01-09 07:56:42', '2021-01-09 07:57:08'),
+	(226, 'radio3', NULL, 'Choose your gender..', 'Radio', 'Steven,David,Freddy', NULL, '2021-01-10 04:42:11', '2021-01-26 23:07:49'),
+	(227, 'form3_radio', NULL, 'What is your type?', 'Radio', 'Slim,Fatty,Medium', NULL, '2021-01-10 06:38:42', '2021-01-25 21:56:03'),
+	(228, 'Text_form_multi', NULL, 'Job', 'Text', '', 'Write your job here..', '2021-01-10 11:11:40', '2021-01-10 11:14:37'),
+	(229, 'Check2', NULL, 'Choose your career..', 'Check', 'Middle school graduation,Undergraduation course,Graduation course,Master course', NULL, '2021-01-12 04:47:09', '2021-01-25 21:58:09'),
+	(230, 'radio2', NULL, 'Choose your work experience.', 'Radio', '0-3years,3-6years,6-9years,9+years', NULL, '2021-01-12 05:20:57', '2021-01-12 05:20:57'),
+	(231, 'Toggle2', NULL, 'Do you have children?', 'Toggle', '', NULL, '2021-01-12 06:22:31', '2021-01-12 06:22:31'),
+	(232, 'toggle3', NULL, 'Are you ok now?', 'Toggle', NULL, NULL, '2021-01-23 14:17:08', '2021-01-23 14:17:08'),
+	(233, 'FORMFIELD:Company Name', NULL, 'Company Name', 'Text', NULL, 'Company Name', '2021-01-27 04:33:29', '2021-01-27 04:33:29'),
+	(234, 'AS:FORM:CONTACT:Name', NULL, 'Name', 'Text', NULL, 'This is placeholder text', '2021-01-27 06:15:26', '2021-01-28 05:29:56'),
+	(235, 'AS:FORM:CONTACT:Email', NULL, 'Email', 'Email', NULL, 'More placeholder text', '2021-01-27 06:15:59', '2021-01-28 05:30:03'),
+	(236, 'AS:FORM:CONTACT:Subject', NULL, 'Subject', 'Text', NULL, '', '2021-01-27 06:21:26', '2021-01-28 00:07:57'),
+	(237, 'AS:FORM:CONTACT:', NULL, 'Message', 'Text', NULL, NULL, '2021-01-27 06:23:56', '2021-01-27 06:23:56'),
+	(238, 'AS:FORM:CONTACT:Message', NULL, 'Message', 'MULTI-LINE TEXT', NULL, NULL, '2021-01-28 00:40:53', '2021-01-28 23:20:15'),
+	(239, 'AS:FORM:SUBSCRIBET', NULL, 'Subscribe', 'Email', NULL, 'Please enter your email address', '2021-01-28 05:45:03', '2021-01-28 05:45:24'),
+	(240, 'Textarea Test', NULL, 'Textarea Test', 'MULTI-LINE TEXT', NULL, 'This is the testarea field.', '2021-01-28 20:20:01', '2021-01-28 20:20:01');
+/*!40000 ALTER TABLE `module_form_elements` ENABLE KEYS */;
+
+-- Dumping structure for table cms_master.module_header
+DROP TABLE IF EXISTS `module_header`;
 CREATE TABLE IF NOT EXISTS `module_header` (
   `headerId` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `internalName` varchar(1024) NOT NULL,
@@ -197,11 +386,11 @@ CREATE TABLE IF NOT EXISTS `module_header` (
   `menuGroup2` bigint(20) DEFAULT NULL,
   `menuGroup3` bigint(20) DEFAULT NULL,
   `createdAt` datetime NOT NULL,
-  `updatedAt` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE current_timestamp(),
+  `updatedAt` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`headerId`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
--- Dumping data for table test.module_header: ~5 rows (approximately)
+-- Dumping data for table cms_master.module_header: ~5 rows (approximately)
 DELETE FROM `module_header`;
 /*!40000 ALTER TABLE `module_header` DISABLE KEYS */;
 INSERT INTO `module_header` (`headerId`, `internalName`, `settingId`, `designType`, `image1`, `image2`, `menuGroup1`, `menuGroup2`, `menuGroup3`, `createdAt`, `updatedAt`) VALUES
@@ -209,21 +398,22 @@ INSERT INTO `module_header` (`headerId`, `internalName`, `settingId`, `designTyp
 	(3, 'SubMenu', NULL, 'centerLeftDesign', NULL, NULL, 6, NULL, NULL, '2020-10-21 05:05:26', '2020-10-21 05:05:26'),
 	(4, 'AS-HEADER', 47, 'leftRightDesign', 18, NULL, 7, NULL, NULL, '2020-10-22 04:14:29', '2020-10-23 09:57:47'),
 	(5, 'AS:Main Menu', 123, 'leftRightDesign', 40, NULL, 8, NULL, NULL, '2020-10-29 07:54:43', '2020-10-29 10:43:39'),
-	(6, 'MAINMENU:Emocean', 154, 'leftRightDesign', 49, 54, 9, 10, NULL, '2020-11-05 02:46:22', '2020-12-05 17:29:51');
+	(6, 'MAINMENU:Emocean', 154, 'centerRightDesign', 49, 54, 9, 10, NULL, '2020-11-05 02:46:22', '2021-01-27 10:19:42');
 /*!40000 ALTER TABLE `module_header` ENABLE KEYS */;
 
--- Dumping structure for table test.module_menu_group
+-- Dumping structure for table cms_master.module_menu_group
+DROP TABLE IF EXISTS `module_menu_group`;
 CREATE TABLE IF NOT EXISTS `module_menu_group` (
   `menuGroupId` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `internalName` varchar(128) NOT NULL,
   `settingId` bigint(20) DEFAULT NULL,
   `align` varchar(10) DEFAULT 'left',
   `createdAt` datetime NOT NULL,
-  `updatedAt` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE current_timestamp(),
+  `updatedAt` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`menuGroupId`)
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 
--- Dumping data for table test.module_menu_group: ~7 rows (approximately)
+-- Dumping data for table cms_master.module_menu_group: ~7 rows (approximately)
 DELETE FROM `module_menu_group`;
 /*!40000 ALTER TABLE `module_menu_group` DISABLE KEYS */;
 INSERT INTO `module_menu_group` (`menuGroupId`, `internalName`, `settingId`, `align`, `createdAt`, `updatedAt`) VALUES
@@ -236,18 +426,19 @@ INSERT INTO `module_menu_group` (`menuGroupId`, `internalName`, `settingId`, `al
 	(10, 'EMOCEAN-MAINMENU-SubMenu', NULL, 'right', '2020-11-05 04:18:48', '2020-11-05 04:20:16');
 /*!40000 ALTER TABLE `module_menu_group` ENABLE KEYS */;
 
--- Dumping structure for table test.module_menu_group__buttons
+-- Dumping structure for table cms_master.module_menu_group__buttons
+DROP TABLE IF EXISTS `module_menu_group__buttons`;
 CREATE TABLE IF NOT EXISTS `module_menu_group__buttons` (
   `menuGroupButtonId` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `menuGroupId` bigint(20) NOT NULL,
   `moduleName` varchar(128) NOT NULL,
   `moduleId` bigint(20) NOT NULL,
   `createdAt` datetime NOT NULL,
-  `updatedAt` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE current_timestamp(),
+  `updatedAt` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`menuGroupButtonId`)
 ) ENGINE=InnoDB AUTO_INCREMENT=235 DEFAULT CHARSET=utf8;
 
--- Dumping data for table test.module_menu_group__buttons: ~24 rows (approximately)
+-- Dumping data for table cms_master.module_menu_group__buttons: ~24 rows (approximately)
 DELETE FROM `module_menu_group__buttons`;
 /*!40000 ALTER TABLE `module_menu_group__buttons` DISABLE KEYS */;
 INSERT INTO `module_menu_group__buttons` (`menuGroupButtonId`, `menuGroupId`, `moduleName`, `moduleId`, `createdAt`, `updatedAt`) VALUES
@@ -277,7 +468,8 @@ INSERT INTO `module_menu_group__buttons` (`menuGroupButtonId`, `menuGroupId`, `m
 	(234, 8, 'module_button', 44, '2020-11-30 06:57:57', '2020-11-30 06:57:57');
 /*!40000 ALTER TABLE `module_menu_group__buttons` ENABLE KEYS */;
 
--- Dumping structure for table test.module_multi_columns
+-- Dumping structure for table cms_master.module_multi_columns
+DROP TABLE IF EXISTS `module_multi_columns`;
 CREATE TABLE IF NOT EXISTS `module_multi_columns` (
   `multiColumnsId` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `internalName` varchar(128) NOT NULL,
@@ -287,11 +479,11 @@ CREATE TABLE IF NOT EXISTS `module_multi_columns` (
   `columnWidths` varchar(4096) NOT NULL,
   `mobileType` varchar(10) DEFAULT 'row',
   `createdAt` datetime NOT NULL,
-  `updatedAt` datetime NOT NULL DEFAULT '1999-01-01 00:00:00' ON UPDATE current_timestamp(),
+  `updatedAt` datetime NOT NULL DEFAULT '1999-01-01 00:00:00' ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`multiColumnsId`)
-) ENGINE=InnoDB AUTO_INCREMENT=104 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=110 DEFAULT CHARSET=utf8;
 
--- Dumping data for table test.module_multi_columns: ~80 rows (approximately)
+-- Dumping data for table cms_master.module_multi_columns: ~86 rows (approximately)
 DELETE FROM `module_multi_columns`;
 /*!40000 ALTER TABLE `module_multi_columns` DISABLE KEYS */;
 INSERT INTO `module_multi_columns` (`multiColumnsId`, `internalName`, `settingId`, `type`, `columnCount`, `columnWidths`, `mobileType`, `createdAt`, `updatedAt`) VALUES
@@ -355,7 +547,7 @@ INSERT INTO `module_multi_columns` (`multiColumnsId`, `internalName`, `settingId
 	(81, 'AS:FOOTER:ADDRESS:Details', NULL, 'row', 2, '1,2', 'row', '2020-10-29 11:27:51', '2020-10-30 00:57:52'),
 	(82, 'AS:FOOTER:EMAIL:Details', NULL, 'row', 2, '1,2', 'row', '2020-10-29 11:29:14', '2020-10-30 00:57:35'),
 	(83, 'AS:FOOTER:Contact Details', 138, 'column', 3, '1,1,1', 'row', '2020-10-29 11:30:09', '2020-10-29 12:16:29'),
-	(84, 'AS:FOOTER', 137, 'column', 1, '1', 'column', '2020-10-29 11:31:00', '2020-10-29 12:07:05'),
+	(84, 'AS:FOOTER:Contact', 137, 'column', 1, '1', 'column', '2020-10-29 11:31:00', '2021-01-27 06:13:36'),
 	(85, 'AS:FOOTER:ICON:PHONE:Height Control', 140, 'column', 1, '1', 'column', '2020-10-29 11:52:30', '2020-10-29 11:52:30'),
 	(86, 'AS:FOOTER:ADDRESS:Height Control', 140, 'column', 1, '1', 'column', '2020-10-29 11:53:50', '2020-10-29 11:54:41'),
 	(87, 'AS:FOOTER:EMAIL:Height Control', 140, 'column', 1, '1', 'column', '2020-10-29 11:55:48', '2020-10-29 11:55:48'),
@@ -374,21 +566,28 @@ INSERT INTO `module_multi_columns` (`multiColumnsId`, `internalName`, `settingId
 	(100, 'EMO-3COL-3ROW-CONTENTBLOCK-Container', 94, 'row', 2, '1,1', 'row', '2020-11-05 06:25:47', '2020-11-05 06:36:49'),
 	(101, 'EMO-3COL-3ROW-CONTENTBLOCK-DriveTraffiContainer', 94, 'row', 2, '1,1', 'row', '2020-11-05 07:41:05', '2020-11-05 07:42:21'),
 	(102, 'MA:doesn\'t matter', NULL, 'column', 2, '1,1', 'row', '2020-11-30 06:17:36', '2020-12-04 15:42:09'),
-	(103, 'IMAGE:Oasis', NULL, 'column', 1, '1', 'column', '2020-11-30 07:07:12', '2020-12-04 17:42:18');
+	(103, 'IMAGE:Oasis', NULL, 'column', 1, '1', 'column', '2020-11-30 07:07:12', '2020-12-04 17:42:18'),
+	(104, 'Muti_Axies_Module', 169, 'column', 3, '2,1', 'row', '2021-01-08 05:29:37', '2021-01-08 05:39:18'),
+	(105, 'Toggle1_Check1_for_multi_axies', 169, 'column', 3, '2,1', 'row', '2021-01-08 05:39:02', '2021-01-09 07:59:15'),
+	(106, 'email3_password3_multiaxies', 172, 'column', 2, '1,1', 'row', '2021-01-10 06:21:31', '2021-01-10 06:44:42'),
+	(107, 'form_builder_mutiaxies', 172, 'column', 2, '1,1', 'row', '2021-01-10 06:23:43', '2021-01-10 06:44:51'),
+	(108, '2 COLUMN CONTACT FORM', 174, 'column', 2, '1,1', 'row', '2021-01-25 04:38:30', '2021-01-25 04:47:38'),
+	(109, 'AS:FORM:MULTICOLUMN:Name+Email', 177, 'column', 2, '1,1', 'row', '2021-01-27 06:16:18', '2021-01-28 04:56:19');
 /*!40000 ALTER TABLE `module_multi_columns` ENABLE KEYS */;
 
--- Dumping structure for table test.module_multi_columns__columns
+-- Dumping structure for table cms_master.module_multi_columns__columns
+DROP TABLE IF EXISTS `module_multi_columns__columns`;
 CREATE TABLE IF NOT EXISTS `module_multi_columns__columns` (
   `multiColumnsColumnId` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `multiColumnsId` bigint(20) NOT NULL,
   `moduleName` varchar(128) NOT NULL,
   `moduleId` bigint(20) NOT NULL,
   `createdAt` datetime NOT NULL,
-  `updatedAt` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE current_timestamp(),
+  `updatedAt` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`multiColumnsColumnId`)
-) ENGINE=InnoDB AUTO_INCREMENT=2308 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2427 DEFAULT CHARSET=utf8;
 
--- Dumping data for table test.module_multi_columns__columns: ~158 rows (approximately)
+-- Dumping data for table cms_master.module_multi_columns__columns: ~171 rows (approximately)
 DELETE FROM `module_multi_columns__columns`;
 /*!40000 ALTER TABLE `module_multi_columns__columns` DISABLE KEYS */;
 INSERT INTO `module_multi_columns__columns` (`multiColumnsColumnId`, `multiColumnsId`, `moduleName`, `moduleId`, `createdAt`, `updatedAt`) VALUES
@@ -533,7 +732,6 @@ INSERT INTO `module_multi_columns__columns` (`multiColumnsColumnId`, `multiColum
 	(2163, 88, 'module_button', 45, '2020-10-30 06:04:30', '2020-10-30 06:04:30'),
 	(2164, 88, 'module_card', 57, '2020-10-30 06:04:30', '2020-10-30 06:04:30'),
 	(2165, 89, 'module_multi_columns', 88, '2020-10-30 06:04:31', '2020-10-30 06:04:31'),
-	(2166, 84, 'module_multi_columns', 83, '2020-10-30 06:08:31', '2020-10-30 06:08:31'),
 	(2208, 98, 'module_card', 63, '2020-11-05 05:17:13', '2020-11-05 05:17:13'),
 	(2209, 98, 'module_card', 66, '2020-11-05 05:17:13', '2020-11-05 05:17:13'),
 	(2210, 98, 'module_card', 67, '2020-11-05 05:17:13', '2020-11-05 05:17:13'),
@@ -550,20 +748,34 @@ INSERT INTO `module_multi_columns__columns` (`multiColumnsColumnId`, `multiColum
 	(2303, 102, 'module_card', 70, '2020-12-04 17:11:49', '2020-12-04 17:11:49'),
 	(2304, 102, 'module_card', 71, '2020-12-04 17:11:49', '2020-12-04 17:11:49'),
 	(2305, 102, 'module_slide_show', 192, '2020-12-04 17:11:49', '2020-12-04 17:11:49'),
-	(2307, 103, 'module_website_image', 65, '2020-12-04 17:42:19', '2020-12-04 17:42:19');
+	(2307, 103, 'module_website_image', 65, '2020-12-04 17:42:19', '2020-12-04 17:42:19'),
+	(2314, 104, 'module_form_elements', 215, '2021-01-08 17:50:15', '2021-01-08 17:50:15'),
+	(2353, 105, 'module_form_elements', 213, '2021-01-10 06:13:27', '2021-01-10 06:13:27'),
+	(2354, 105, 'module_form_elements', 216, '2021-01-10 06:13:27', '2021-01-10 06:13:27'),
+	(2355, 105, 'module_form_elements', 225, '2021-01-10 06:13:27', '2021-01-10 06:13:27'),
+	(2382, 106, 'module_form_elements', 204, '2021-01-10 06:51:15', '2021-01-10 06:51:15'),
+	(2383, 106, 'module_form_elements', 212, '2021-01-10 06:51:15', '2021-01-10 06:51:15'),
+	(2392, 107, 'module_form_elements', 217, '2021-01-10 11:14:38', '2021-01-10 11:14:38'),
+	(2393, 107, 'module_form_elements', 228, '2021-01-10 11:14:38', '2021-01-10 11:14:38'),
+	(2402, 108, 'module_card', 73, '2021-01-25 05:22:03', '2021-01-25 05:22:03'),
+	(2403, 108, 'module_form_builder', 199, '2021-01-25 05:22:03', '2021-01-25 05:22:03'),
+	(2404, 84, 'module_multi_columns', 83, '2021-01-27 06:13:36', '2021-01-27 06:13:36'),
+	(2425, 109, 'module_form_elements', 234, '2021-01-28 05:30:06', '2021-01-28 05:30:06'),
+	(2426, 109, 'module_form_elements', 235, '2021-01-28 05:30:06', '2021-01-28 05:30:06');
 /*!40000 ALTER TABLE `module_multi_columns__columns` ENABLE KEYS */;
 
--- Dumping structure for table test.module_page_setting
+-- Dumping structure for table cms_master.module_page_setting
+DROP TABLE IF EXISTS `module_page_setting`;
 CREATE TABLE IF NOT EXISTS `module_page_setting` (
   `pageSettingId` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `internalName` varchar(1024) NOT NULL,
   `maxWidth` varchar(1024) DEFAULT NULL,
   `createdAt` datetime NOT NULL,
-  `updatedAt` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE current_timestamp(),
+  `updatedAt` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`pageSettingId`)
 ) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
 
--- Dumping data for table test.module_page_setting: ~2 rows (approximately)
+-- Dumping data for table cms_master.module_page_setting: ~2 rows (approximately)
 DELETE FROM `module_page_setting`;
 /*!40000 ALTER TABLE `module_page_setting` DISABLE KEYS */;
 INSERT INTO `module_page_setting` (`pageSettingId`, `internalName`, `maxWidth`, `createdAt`, `updatedAt`) VALUES
@@ -571,7 +783,8 @@ INSERT INTO `module_page_setting` (`pageSettingId`, `internalName`, `maxWidth`, 
 	(15, 'PAGESETTINGS:Oasis', '1280px', '2020-11-30 06:23:43', '2020-11-30 06:24:21');
 /*!40000 ALTER TABLE `module_page_setting` ENABLE KEYS */;
 
--- Dumping structure for table test.module_section_setting
+-- Dumping structure for table cms_master.module_section_setting
+DROP TABLE IF EXISTS `module_section_setting`;
 CREATE TABLE IF NOT EXISTS `module_section_setting` (
   `sectionSettingId` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `internalName` varchar(1024) NOT NULL,
@@ -588,11 +801,11 @@ CREATE TABLE IF NOT EXISTS `module_section_setting` (
   `margin` varchar(1024) DEFAULT NULL,
   `padding` varchar(1024) DEFAULT NULL,
   `createdAt` datetime NOT NULL,
-  `updatedAt` datetime NOT NULL DEFAULT '1999-01-01 00:00:00' ON UPDATE current_timestamp(),
+  `updatedAt` datetime NOT NULL DEFAULT '1999-01-01 00:00:00' ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`sectionSettingId`)
-) ENGINE=InnoDB AUTO_INCREMENT=167 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=178 DEFAULT CHARSET=utf8;
 
--- Dumping data for table test.module_section_setting: ~130 rows (approximately)
+-- Dumping data for table cms_master.module_section_setting: ~143 rows (approximately)
 DELETE FROM `module_section_setting`;
 /*!40000 ALTER TABLE `module_section_setting` DISABLE KEYS */;
 INSERT INTO `module_section_setting` (`sectionSettingId`, `internalName`, `width`, `maxWidth`, `height`, `maxHeight`, `backgroundColor`, `backgroundImageId`, `borders`, `borderStyle`, `borderThickness`, `borderColor`, `margin`, `padding`, `createdAt`, `updatedAt`) VALUES
@@ -727,10 +940,22 @@ INSERT INTO `module_section_setting` (`sectionSettingId`, `internalName`, `width
 	(163, 'IMAGE:SETTINGS', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '50px,0,0,0', NULL, '2020-11-30 07:06:48', '2020-11-30 07:14:44'),
 	(164, 'CB:Settings:withImage', '500px', NULL, NULL, NULL, NULL, NULL, 'top,bottom,left,right', 'solid', '1px', NULL, NULL, '50px,50px,50px,50px', '2020-11-30 07:08:39', '2020-11-30 07:09:24'),
 	(165, 'slide show 1 setting', '80%', '', '700px', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0,auto,0,auto', NULL, '2020-12-05 18:34:22', '2020-12-15 17:37:56'),
-	(166, 'slide image rule', '', NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2020-12-05 19:18:27', '2020-12-05 19:38:33');
+	(166, 'slide image rule', '', NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2020-12-05 19:18:27', '2020-12-05 19:38:33'),
+	(167, 'form_builder_setting1', '800px', '100%', '80%', '100%', '', NULL, '', 'dotted', '1px', 'green', '0,auto,0,auto', '0,0,0,0', '2021-01-03 19:10:26', '2021-01-10 11:06:08'),
+	(168, 'setting', '500px', '500px', '50px', '600px', NULL, 70, NULL, 'solid', '3px', NULL, NULL, NULL, '2021-01-05 08:10:28', '2021-01-05 08:10:28'),
+	(169, 'Section_Setting1_for_Multiaxies', '80%', '100%', '80%', '100%', '', NULL, '', 'dotted', '1px', 'green', '20px,20px,20px,20px', '10px,10px,10px,10px', '2021-01-08 05:28:54', '2021-01-10 06:13:25'),
+	(170, 'Form_Builder_Setting2', '600px', '', '50%', '100%', NULL, NULL, 'top,right,left,bottom', 'dashed', '2px', '#ff3d84', '50px,auto,0,auto', '25px,25px,25px,25px', '2021-01-10 04:22:53', '2021-01-26 23:17:40'),
+	(171, 'form_builder_setting3', '800px', '100%', '80%', '100%', NULL, NULL, NULL, 'dotted', '1px', 'green', '0,auto,0,auto', '0,0,0,0', '2021-01-10 06:16:25', '2021-01-10 11:09:21'),
+	(172, 'form_builder_multi_section3', '100%', '100%', '100%', '100%', NULL, NULL, NULL, 'dotted', '1px', 'green', '10px,0,20px,0', '0,0,0,0', '2021-01-10 06:21:15', '2021-01-18 02:20:46'),
+	(173, 'CONTACT COLUMNS SETTINGS', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0,AUTO,0,AUTO', NULL, '2021-01-25 04:39:29', '2021-01-25 04:39:29'),
+	(174, 'CONTACT COUMN SETTINGS', '800px', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0,auto,0,auto', NULL, '2021-01-25 04:47:36', '2021-01-25 04:48:36'),
+	(175, 'FORMSETTINGS:DesignBrief', '40%', NULL, NULL, '50%', NULL, NULL, NULL, 'solid', '1px', '#FF0083', '50px,auto,0,auto', '35px,35px,35px,35px', '2021-01-27 04:50:48', '2021-01-27 05:30:38'),
+	(176, 'AS:FORM:SETTINGS:Contact', '600px', '100%', '100%', '100%', NULL, NULL, 'top,bottom,left,right', 'groove', '0px', 'black', '85px,auto,85px,auto', '0,0,0,0', '2021-01-27 06:18:53', '2021-01-28 06:03:39'),
+	(177, 'AS:FORM:SETTINGS:CONTACT:Multi-Axies', '100%', '100%', '100%', '100%', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-01-28 04:56:17', '2021-01-28 04:56:17');
 /*!40000 ALTER TABLE `module_section_setting` ENABLE KEYS */;
 
--- Dumping structure for table test.module_seo
+-- Dumping structure for table cms_master.module_seo
+DROP TABLE IF EXISTS `module_seo`;
 CREATE TABLE IF NOT EXISTS `module_seo` (
   `seoId` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `internalName` varchar(128) NOT NULL,
@@ -739,26 +964,29 @@ CREATE TABLE IF NOT EXISTS `module_seo` (
   `title` varchar(1024) DEFAULT NULL,
   `description` varchar(4096) DEFAULT NULL,
   `createdAt` datetime NOT NULL,
-  `updatedAt` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE current_timestamp(),
+  `updatedAt` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`seoId`)
-) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=utf8;
 
--- Dumping data for table test.module_seo: ~9 rows (approximately)
+-- Dumping data for table cms_master.module_seo: ~11 rows (approximately)
 DELETE FROM `module_seo`;
 /*!40000 ALTER TABLE `module_seo` DISABLE KEYS */;
 INSERT INTO `module_seo` (`seoId`, `internalName`, `slug`, `featuredImageId`, `title`, `description`, `createdAt`, `updatedAt`) VALUES
 	(27, 'SEO: Windy', 'windy', NULL, 'Windy Luxury Boats', NULL, '2020-10-19 04:07:23', '2020-10-19 04:07:23'),
 	(28, 'AS-Home', 'activesurgical', NULL, 'Active Surgical - Home Page', NULL, '2020-10-22 04:15:13', '2020-10-22 04:15:13'),
 	(29, 'CommBank', 'commbank', NULL, 'Testing Design', NULL, '2020-10-27 01:24:18', '2020-10-27 01:24:18'),
-	(30, 'AS:SEO', 'activesurgical-review', NULL, 'Active Surgical', 'Active Surgical is committed to providing solutions to surgeons and healthcare professionals to enable them to achieve the best outcomes for their patients. We will source and provide options based on requirements and feedback from surgeons and ensure we remain at the forefront of patient healthcare.', '2020-10-29 07:54:25', '2020-11-04 12:25:28'),
+	(30, 'AS:SEO', 'activesurgical-review', NULL, 'Active Surgical - providing solutions to surgeons and healthcare professionals.', 'Active Surgical is committed to providing solutions to surgeons and healthcare professionals to enable them to achieve the best outcomes for their patients. We will source and provide options based on requirements and feedback from surgeons and ensure we remain at the forefront of patient healthcare.', '2020-10-29 07:54:25', '2021-01-27 05:45:28'),
 	(31, 'test-page', 'test-page', NULL, NULL, NULL, '2020-11-04 12:26:27', '2020-11-04 12:26:27'),
 	(32, 'SEO-Emocean', 'emocean', NULL, 'Emocean Studios', NULL, '2020-11-05 01:59:51', '2020-11-05 01:59:51'),
 	(33, 'jaksj', 'www.google.com', NULL, NULL, NULL, '2020-11-05 07:32:34', '2020-11-05 07:32:34'),
 	(34, 'SEO', 'masum', NULL, 'masum', NULL, '2020-11-05 07:32:54', '2020-11-05 11:03:38'),
-	(35, 'SEO:Oasis', 'oasis', NULL, NULL, NULL, '2020-11-30 06:13:47', '2020-11-30 06:13:47');
+	(35, 'SEO:Oasis', 'oasis', NULL, NULL, NULL, '2020-11-30 06:13:47', '2020-11-30 06:13:47'),
+	(36, 'HANK:SEO', 'hankcms', NULL, 'HANK Content Management System', 'This is the meta description for the latest and greatest HANK Website Content Management System.', '2021-01-27 01:23:22', '2021-01-27 01:23:22'),
+	(37, 'seo chicken page', 'backyard-chicken', NULL, 'automatic chicken door opener', 'this is the meta description for our automatic backyard chicken door opener', '2021-01-28 00:52:57', '2021-01-28 00:52:57');
 /*!40000 ALTER TABLE `module_seo` ENABLE KEYS */;
 
--- Dumping structure for table test.module_site_setting
+-- Dumping structure for table cms_master.module_site_setting
+DROP TABLE IF EXISTS `module_site_setting`;
 CREATE TABLE IF NOT EXISTS `module_site_setting` (
   `siteSettingId` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `internalName` varchar(1024) NOT NULL,
@@ -773,28 +1001,28 @@ CREATE TABLE IF NOT EXISTS `module_site_setting` (
   `h1FontFormat` varchar(100) DEFAULT NULL,
   `h1FontAlign` varchar(10) NOT NULL DEFAULT 'Left',
   `h1LineHeight` varchar(10) NOT NULL DEFAULT '140%',
-  `h1LetterSpacing` int(1) NOT NULL DEFAULT 0,
+  `h1LetterSpacing` int(1) NOT NULL DEFAULT '0',
   `h2Font` varchar(50) DEFAULT NULL,
   `h2FontSize` varchar(10) DEFAULT NULL,
   `h2FontColor` varchar(7) NOT NULL DEFAULT '#000000',
   `h2FontFormat` varchar(100) DEFAULT NULL,
   `h2FontAlign` varchar(10) NOT NULL DEFAULT 'Left',
   `h2LineHeight` varchar(10) NOT NULL DEFAULT '140%',
-  `h2LetterSpacing` int(1) NOT NULL DEFAULT 0,
+  `h2LetterSpacing` int(1) NOT NULL DEFAULT '0',
   `h3Font` varchar(50) DEFAULT NULL,
   `h3FontSize` varchar(10) DEFAULT NULL,
   `h3FontColor` varchar(7) NOT NULL DEFAULT '#000000',
   `h3FontFormat` varchar(100) DEFAULT NULL,
   `h3FontAlign` varchar(10) NOT NULL DEFAULT 'Left',
   `h3LineHeight` varchar(10) NOT NULL DEFAULT '140%',
-  `h3LetterSpacing` int(1) NOT NULL DEFAULT 0,
+  `h3LetterSpacing` int(1) NOT NULL DEFAULT '0',
   `h4Font` varchar(50) DEFAULT NULL,
   `h4FontSize` varchar(10) DEFAULT NULL,
   `h4FontColor` varchar(7) NOT NULL DEFAULT '#000000',
   `h4FontFormat` varchar(100) DEFAULT NULL,
   `h4FontAlign` varchar(10) NOT NULL DEFAULT 'Left',
   `h4LineHeight` varchar(10) NOT NULL DEFAULT '140%',
-  `h4LetterSpacing` int(1) NOT NULL DEFAULT 0,
+  `h4LetterSpacing` int(1) NOT NULL DEFAULT '0',
   `h5Font` varchar(50) DEFAULT NULL,
   `h5FontSize` varchar(10) DEFAULT NULL,
   `h5FontColor` varchar(7) DEFAULT NULL,
@@ -817,18 +1045,19 @@ CREATE TABLE IF NOT EXISTS `module_site_setting` (
   `normalLineHeight` varchar(10) DEFAULT NULL,
   `normalLetterSpacing` varchar(10) DEFAULT NULL,
   `createdAt` datetime NOT NULL,
-  `updatedAt` datetime NOT NULL DEFAULT '1999-01-01 00:00:00' ON UPDATE current_timestamp(),
+  `updatedAt` datetime NOT NULL DEFAULT '1999-01-01 00:00:00' ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`siteSettingId`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
--- Dumping data for table test.module_site_setting: ~0 rows (approximately)
+-- Dumping data for table cms_master.module_site_setting: ~0 rows (approximately)
 DELETE FROM `module_site_setting`;
 /*!40000 ALTER TABLE `module_site_setting` DISABLE KEYS */;
 INSERT INTO `module_site_setting` (`siteSettingId`, `internalName`, `siteName`, `maxWidth`, `favicon`, `defaultLinkTextColor`, `defaultLinkTextHoverColor`, `h1Font`, `h1FontSize`, `h1FontColor`, `h1FontFormat`, `h1FontAlign`, `h1LineHeight`, `h1LetterSpacing`, `h2Font`, `h2FontSize`, `h2FontColor`, `h2FontFormat`, `h2FontAlign`, `h2LineHeight`, `h2LetterSpacing`, `h3Font`, `h3FontSize`, `h3FontColor`, `h3FontFormat`, `h3FontAlign`, `h3LineHeight`, `h3LetterSpacing`, `h4Font`, `h4FontSize`, `h4FontColor`, `h4FontFormat`, `h4FontAlign`, `h4LineHeight`, `h4LetterSpacing`, `h5Font`, `h5FontSize`, `h5FontColor`, `h5FontFormat`, `h5FontAlign`, `h5LineHeight`, `h5LetterSpacing`, `h6Font`, `h6FontSize`, `h6FontColor`, `h6FontFormat`, `h6FontAlign`, `h6LineHeight`, `h6LetterSpacing`, `normalFont`, `normalFontSize`, `normalFontColor`, `normalFontFormat`, `normalFontAlign`, `normalLineHeight`, `normalLetterSpacing`, `createdAt`, `updatedAt`) VALUES
 	(1, 'WindySiteSetting', 'SiteSetting', '100%', 'website-image--1603249660418.svg', '', '', 'Archivo', '24px', '#000000', '', 'left', '110%', 1, 'Archivo', '24px', '#000000', '', 'left', '110%', 0, 'Roboto', '16px', '#000000', '', 'left', '110%', 0, 'Archivo', '12px', '#000000', '', 'left', '140%', 1, 'Cardo', '12px', '#000000', '', 'right', '140%', '1', 'sans-serif', '1.25rem', '#000000', '', 'justify', '140%', '1', 'Lato', '16px', '#878787', '', 'left', '140%', '0', '2020-10-12 00:00:00', '2020-11-30 07:20:22');
 /*!40000 ALTER TABLE `module_site_setting` ENABLE KEYS */;
 
--- Dumping structure for table test.module_slide_show
+-- Dumping structure for table cms_master.module_slide_show
+DROP TABLE IF EXISTS `module_slide_show`;
 CREATE TABLE IF NOT EXISTS `module_slide_show` (
   `slideShowId` int(20) unsigned NOT NULL AUTO_INCREMENT,
   `internalName` varchar(255) NOT NULL,
@@ -847,19 +1076,20 @@ CREATE TABLE IF NOT EXISTS `module_slide_show` (
   `multiImageWidth` varchar(200) DEFAULT NULL,
   `gapBetweenImages` varchar(200) DEFAULT NULL,
   `createdAt` datetime DEFAULT NULL,
-  `updatedAt` datetime DEFAULT NULL ON UPDATE current_timestamp(),
+  `updatedAt` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`slideShowId`)
-) ENGINE=InnoDB AUTO_INCREMENT=197 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=199 DEFAULT CHARSET=utf8;
 
--- Dumping data for table test.module_slide_show: ~2 rows (approximately)
+-- Dumping data for table cms_master.module_slide_show: ~2 rows (approximately)
 DELETE FROM `module_slide_show`;
 /*!40000 ALTER TABLE `module_slide_show` DISABLE KEYS */;
 INSERT INTO `module_slide_show` (`slideShowId`, `internalName`, `settingId`, `slideType`, `navigationIcon`, `navigationIconWidth`, `navigationIconFromTop`, `navigationIconLeftRight`, `paginationIcon`, `paginationIconWidth`, `paginationIconTop`, `animationType`, `autoPlayState`, `autoPlayDuration`, `multiImageWidth`, `gapBetweenImages`, `createdAt`, `updatedAt`) VALUES
-	(195, 'Slide show 1', 165, 'Single Type', 'arrow-icon-02-black', '50px', '330px', '30px', 'outline-dot-icon-white', '20px', '630px', 'Fade-In-Forward', 'Turn Off', 3000, '1200px', '20px', '2020-12-05 16:30:38', '2020-12-15 21:08:58'),
-	(196, 'Slide show 2', 165, 'Multi Type', 'arrow-icon-02-white', '50px', '550px', '30px', 'outline-dot-icon-black', '10px', '30px', 'Fade-In', 'Turn Off', 2000, NULL, '10px', '2020-12-05 16:36:37', '2020-12-12 23:25:51');
+	(197, 'Slide Show', 165, 'Single Type', 'arrow-icon-02-black', '50px', '300px', '50px', 'outline-dot-icon-black', '30px', '580px', 'Scale-In-Left', 'Turn Off', 3998, NULL, NULL, '2021-01-04 05:07:37', '2021-01-27 10:36:43'),
+	(198, 'slide2', NULL, 'Multi Type', 'arrow-icon-03-black', NULL, NULL, NULL, 'outline-dot-icon-white', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-01-05 08:07:25', '2021-01-05 08:07:25');
 /*!40000 ALTER TABLE `module_slide_show` ENABLE KEYS */;
 
--- Dumping structure for table test.module_slide_show_box
+-- Dumping structure for table cms_master.module_slide_show_box
+DROP TABLE IF EXISTS `module_slide_show_box`;
 CREATE TABLE IF NOT EXISTS `module_slide_show_box` (
   `slideShowBoxId` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `slideShowId` int(11) DEFAULT NULL,
@@ -868,38 +1098,40 @@ CREATE TABLE IF NOT EXISTS `module_slide_show_box` (
   `createdAt` datetime DEFAULT NULL,
   `updatedAt` datetime DEFAULT NULL,
   PRIMARY KEY (`slideShowBoxId`)
-) ENGINE=InnoDB AUTO_INCREMENT=578 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=638 DEFAULT CHARSET=latin1;
 
--- Dumping data for table test.module_slide_show_box: ~7 rows (approximately)
+-- Dumping data for table cms_master.module_slide_show_box: ~8 rows (approximately)
 DELETE FROM `module_slide_show_box`;
 /*!40000 ALTER TABLE `module_slide_show_box` DISABLE KEYS */;
 INSERT INTO `module_slide_show_box` (`slideShowBoxId`, `slideShowId`, `moduleName`, `moduleId`, `createdAt`, `updatedAt`) VALUES
-	(448, 196, 'module_website_image', 65, '2020-12-12 23:25:51', '2020-12-12 23:25:51'),
-	(449, 196, 'module_website_image', 66, '2020-12-12 23:25:51', '2020-12-12 23:25:51'),
-	(450, 196, 'module_website_image', 64, '2020-12-12 23:25:51', '2020-12-12 23:25:51'),
-	(574, 195, 'module_website_image', 69, '2020-12-15 21:08:58', '2020-12-15 21:08:58'),
-	(575, 195, 'module_website_image', 70, '2020-12-15 21:08:58', '2020-12-15 21:08:58'),
-	(576, 195, 'module_website_image', 71, '2020-12-15 21:08:58', '2020-12-15 21:08:58'),
-	(577, 195, 'module_website_image', 72, '2020-12-15 21:08:58', '2020-12-15 21:08:58');
+	(610, 198, 'module_website_image', 71, '2021-01-05 08:07:25', '2021-01-05 08:07:25'),
+	(611, 198, 'module_website_image', 70, '2021-01-05 08:07:25', '2021-01-05 08:07:25'),
+	(612, 198, 'module_website_image', 69, '2021-01-05 08:07:25', '2021-01-05 08:07:25'),
+	(613, 198, 'module_website_image', 68, '2021-01-05 08:07:25', '2021-01-05 08:07:25'),
+	(634, 197, 'module_website_image', 69, '2021-01-27 10:36:43', '2021-01-27 10:36:43'),
+	(635, 197, 'module_website_image', 70, '2021-01-27 10:36:43', '2021-01-27 10:36:43'),
+	(636, 197, 'module_website_image', 71, '2021-01-27 10:36:43', '2021-01-27 10:36:43'),
+	(637, 197, 'module_website_image', 72, '2021-01-27 10:36:43', '2021-01-27 10:36:43');
 /*!40000 ALTER TABLE `module_slide_show_box` ENABLE KEYS */;
 
--- Dumping structure for table test.module_title_description
+-- Dumping structure for table cms_master.module_title_description
+DROP TABLE IF EXISTS `module_title_description`;
 CREATE TABLE IF NOT EXISTS `module_title_description` (
   `titleDescriptionId` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `internalName` varchar(1024) NOT NULL,
   `settingId` bigint(20) DEFAULT NULL,
   `title` varchar(4096) DEFAULT NULL,
   `subhead` varchar(1024) DEFAULT NULL,
-  `description` text DEFAULT NULL,
+  `description` text,
   `ctaText` varchar(1024) DEFAULT NULL,
   `ctaLink` varchar(1024) DEFAULT NULL,
   `align` varchar(1024) DEFAULT NULL,
   `createdAt` datetime NOT NULL,
-  `updatedAt` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE current_timestamp(),
+  `updatedAt` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`titleDescriptionId`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
--- Dumping data for table test.module_title_description: ~5 rows (approximately)
+-- Dumping data for table cms_master.module_title_description: ~5 rows (approximately)
 DELETE FROM `module_title_description`;
 /*!40000 ALTER TABLE `module_title_description` DISABLE KEYS */;
 INSERT INTO `module_title_description` (`titleDescriptionId`, `internalName`, `settingId`, `title`, `subhead`, `description`, `ctaText`, `ctaLink`, `align`, `createdAt`, `updatedAt`) VALUES
@@ -910,7 +1142,8 @@ INSERT INTO `module_title_description` (`titleDescriptionId`, `internalName`, `s
 	(5, 'Our features', 15, 'Appear In Google Search', 'Feature', '<p><span style="color: rgb(55, 59, 66);">5 billion searches are performed every single day! Yes 5&nbsp;BILLION, with a “B”, that’s&nbsp;BILLION&nbsp;and it’s not a typo!</span></p>', 'Read more', '/dummy-test-page', 'left', '2020-09-13 18:56:31', '2020-09-15 20:04:42');
 /*!40000 ALTER TABLE `module_title_description` ENABLE KEYS */;
 
--- Dumping structure for table test.module_website_image
+-- Dumping structure for table cms_master.module_website_image
+DROP TABLE IF EXISTS `module_website_image`;
 CREATE TABLE IF NOT EXISTS `module_website_image` (
   `websiteImageId` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `internalName` varchar(1024) NOT NULL,
@@ -925,11 +1158,11 @@ CREATE TABLE IF NOT EXISTS `module_website_image` (
   `borderThickness` varchar(10) DEFAULT '0px',
   `borderColor` varchar(10) DEFAULT '#ff0000',
   `createdAt` datetime NOT NULL,
-  `updatedAt` datetime NOT NULL DEFAULT '1999-01-01 00:00:00' ON UPDATE current_timestamp(),
+  `updatedAt` datetime NOT NULL DEFAULT '1999-01-01 00:00:00' ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`websiteImageId`)
-) ENGINE=InnoDB AUTO_INCREMENT=73 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=74 DEFAULT CHARSET=utf8;
 
--- Dumping data for table test.module_website_image: ~52 rows (approximately)
+-- Dumping data for table cms_master.module_website_image: ~53 rows (approximately)
 DELETE FROM `module_website_image`;
 /*!40000 ALTER TABLE `module_website_image` DISABLE KEYS */;
 INSERT INTO `module_website_image` (`websiteImageId`, `internalName`, `settingId`, `image`, `imageMobile`, `alt`, `caption`, `ctaLink`, `borders`, `borderStyle`, `borderThickness`, `borderColor`, `createdAt`, `updatedAt`) VALUES
@@ -984,21 +1217,23 @@ INSERT INTO `module_website_image` (`websiteImageId`, `internalName`, `settingId
 	(69, 'slide1', NULL, 'website-image--1607366457406.jpg', 'website-image--1607366457411.jpg', 'slide1', '', '', NULL, 'solid', '0px', '#ff0000', '2020-12-07 21:40:57', '2020-12-14 16:55:39'),
 	(70, 'slide2', NULL, 'website-image--1607366490497.jpg', 'website-image--1607366490500.jpg', 'slide2', NULL, '', NULL, 'solid', '0px', '#ff0000', '2020-12-07 21:41:30', '2020-12-14 16:55:48'),
 	(71, 'slide3', NULL, 'website-image--1607366514843.jpg', 'website-image--1607366514845.jpg', 'slide3', '', '', NULL, 'solid', '0px', '#ff0000', '2020-12-07 21:41:54', '2020-12-14 16:55:57'),
-	(72, 'slide image 4', NULL, 'website-image--1608055591706.jpg', 'website-image--1608055591714.jpg', 'a', NULL, NULL, NULL, 'solid', '0px', '#ff0000', '2020-12-15 21:06:31', '2020-12-15 21:06:31');
+	(72, 'slide image 4', NULL, 'website-image--1608055591706.jpg', 'website-image--1608055591714.jpg', 'a', NULL, NULL, NULL, 'solid', '0px', '#ff0000', '2020-12-15 21:06:31', '2020-12-15 21:06:31'),
+	(73, 'chicken pic', NULL, 'website-image--1611794945826.jpg', NULL, 'picture of chickens', 'chickens with automated door', NULL, NULL, 'solid', '0px', '#ff0000', '2021-01-28 00:49:16', '2021-01-28 00:49:16');
 /*!40000 ALTER TABLE `module_website_image` ENABLE KEYS */;
 
--- Dumping structure for table test.page
+-- Dumping structure for table cms_master.page
+DROP TABLE IF EXISTS `page`;
 CREATE TABLE IF NOT EXISTS `page` (
   `pageId` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `internalName` varchar(128) NOT NULL,
   `seoId` bigint(20) DEFAULT NULL,
   `pageSettingId` bigint(20) DEFAULT NULL,
   `createdAt` datetime NOT NULL,
-  `updatedAt` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE current_timestamp(),
+  `updatedAt` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`pageId`)
-) ENGINE=InnoDB AUTO_INCREMENT=47 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=50 DEFAULT CHARSET=utf8;
 
--- Dumping data for table test.page: ~6 rows (approximately)
+-- Dumping data for table cms_master.page: ~8 rows (approximately)
 DELETE FROM `page`;
 /*!40000 ALTER TABLE `page` DISABLE KEYS */;
 INSERT INTO `page` (`pageId`, `internalName`, `seoId`, `pageSettingId`, `createdAt`, `updatedAt`) VALUES
@@ -1006,21 +1241,25 @@ INSERT INTO `page` (`pageId`, `internalName`, `seoId`, `pageSettingId`, `created
 	(38, 'ActiveSurgical', 28, NULL, '2020-10-22 04:15:15', '2020-10-22 04:15:15'),
 	(39, 'CommBank', 29, NULL, '2020-10-27 01:39:03', '2020-10-27 02:03:55'),
 	(40, 'Active Surgical Live', 30, NULL, '2020-10-29 07:58:04', '2020-10-29 07:58:04'),
-	(42, 'Emocean - Home', 32, NULL, '2020-11-05 02:46:23', '2020-11-05 02:46:23');
+	(42, 'Emocean - Home', 32, NULL, '2020-11-05 02:46:23', '2020-11-05 02:46:23'),
+	(47, 'HANK', 36, NULL, '2021-01-27 01:23:24', '2021-01-27 01:23:24'),
+	(48, 'backyard chicken', 37, 14, '2021-01-28 00:45:03', '2021-01-28 00:53:12'),
+	(49, 'THIS IS NEW PAGE', NULL, NULL, '2021-01-29 00:20:14', '2021-01-29 00:20:14');
 /*!40000 ALTER TABLE `page` ENABLE KEYS */;
 
--- Dumping structure for table test.page__modules
+-- Dumping structure for table cms_master.page__modules
+DROP TABLE IF EXISTS `page__modules`;
 CREATE TABLE IF NOT EXISTS `page__modules` (
   `pageModuleId` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `pageId` bigint(20) NOT NULL,
   `moduleName` varchar(128) NOT NULL,
   `moduleId` bigint(20) NOT NULL,
   `createdAt` datetime NOT NULL,
-  `updatedAt` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE current_timestamp(),
+  `updatedAt` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`pageModuleId`)
-) ENGINE=InnoDB AUTO_INCREMENT=1539 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2038 DEFAULT CHARSET=utf8;
 
--- Dumping data for table test.page__modules: ~33 rows (approximately)
+-- Dumping data for table cms_master.page__modules: ~42 rows (approximately)
 DELETE FROM `page__modules`;
 /*!40000 ALTER TABLE `page__modules` DISABLE KEYS */;
 INSERT INTO `page__modules` (`pageModuleId`, `pageId`, `moduleName`, `moduleId`, `createdAt`, `updatedAt`) VALUES
@@ -1045,18 +1284,27 @@ INSERT INTO `page__modules` (`pageModuleId`, `pageId`, `moduleName`, `moduleId`,
 	(1416, 38, 'module_multi_columns', 37, '2020-11-10 16:49:23', '2020-11-10 16:49:23'),
 	(1417, 38, 'module_multi_columns', 39, '2020-11-10 16:49:23', '2020-11-10 16:49:23'),
 	(1418, 38, 'module_multi_columns', 48, '2020-11-10 16:49:23', '2020-11-10 16:49:23'),
-	(1441, 40, 'module_header', 5, '2020-11-30 06:58:00', '2020-11-30 06:58:00'),
-	(1442, 40, 'module_multi_columns', 75, '2020-11-30 06:58:00', '2020-11-30 06:58:00'),
-	(1443, 40, 'module_multi_columns', 77, '2020-11-30 06:58:00', '2020-11-30 06:58:00'),
-	(1444, 40, 'module_multi_columns', 78, '2020-11-30 06:58:00', '2020-11-30 06:58:00'),
-	(1445, 40, 'module_multi_columns', 37, '2020-11-30 06:58:00', '2020-11-30 06:58:00'),
-	(1446, 40, 'module_multi_columns', 84, '2020-11-30 06:58:00', '2020-11-30 06:58:00'),
-	(1447, 40, 'module_multi_columns', 89, '2020-11-30 06:58:00', '2020-11-30 06:58:00'),
-	(1534, 42, 'module_header', 6, '2020-12-12 23:08:29', '2020-12-12 23:08:29'),
-	(1535, 42, 'module_multi_columns', 96, '2020-12-12 23:08:29', '2020-12-12 23:08:29'),
-	(1536, 42, 'module_multi_columns', 99, '2020-12-12 23:08:30', '2020-12-12 23:08:30'),
-	(1537, 42, 'module_slide_show', 195, '2020-12-12 23:08:30', '2020-12-12 23:08:30'),
-	(1538, 42, 'module_slide_show', 196, '2020-12-12 23:08:30', '2020-12-12 23:08:30');
+	(1766, 47, 'module_form_builder', 202, '2021-01-27 05:44:20', '2021-01-27 05:44:20'),
+	(1910, 48, 'module_header', 6, '2021-01-28 00:53:12', '2021-01-28 00:53:12'),
+	(1911, 48, 'module_card', 74, '2021-01-28 00:53:12', '2021-01-28 00:53:12'),
+	(1912, 48, 'module_multi_columns', 81, '2021-01-28 00:53:12', '2021-01-28 00:53:12'),
+	(1913, 48, 'module_multi_columns', 82, '2021-01-28 00:53:12', '2021-01-28 00:53:12'),
+	(1914, 48, 'module_multi_columns', 80, '2021-01-28 00:53:12', '2021-01-28 00:53:12'),
+	(1988, 40, 'module_header', 5, '2021-01-28 06:07:53', '2021-01-28 06:07:53'),
+	(1989, 40, 'module_multi_columns', 75, '2021-01-28 06:07:53', '2021-01-28 06:07:53'),
+	(1990, 40, 'module_multi_columns', 77, '2021-01-28 06:07:53', '2021-01-28 06:07:53'),
+	(1991, 40, 'module_multi_columns', 78, '2021-01-28 06:07:53', '2021-01-28 06:07:53'),
+	(1992, 40, 'module_multi_columns', 37, '2021-01-28 06:07:53', '2021-01-28 06:07:53'),
+	(1993, 40, 'module_form_builder', 203, '2021-01-28 06:07:53', '2021-01-28 06:07:53'),
+	(1994, 40, 'module_multi_columns', 84, '2021-01-28 06:07:53', '2021-01-28 06:07:53'),
+	(1995, 40, 'module_multi_columns', 89, '2021-01-28 06:07:53', '2021-01-28 06:07:53'),
+	(2031, 42, 'module_header', 6, '2021-01-28 20:20:07', '2021-01-28 20:20:07'),
+	(2032, 42, 'module_multi_columns', 96, '2021-01-28 20:20:07', '2021-01-28 20:20:07'),
+	(2033, 42, 'module_multi_columns', 99, '2021-01-28 20:20:07', '2021-01-28 20:20:07'),
+	(2034, 42, 'module_slide_show', 197, '2021-01-28 20:20:07', '2021-01-28 20:20:07'),
+	(2035, 42, 'module_form_builder', 199, '2021-01-28 20:20:07', '2021-01-28 20:20:07'),
+	(2036, 42, 'module_form_builder', 200, '2021-01-28 20:20:07', '2021-01-28 20:20:07'),
+	(2037, 42, 'module_form_builder', 202, '2021-01-28 20:20:07', '2021-01-28 20:20:07');
 /*!40000 ALTER TABLE `page__modules` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

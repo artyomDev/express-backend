@@ -24,6 +24,7 @@ const SlideShowModule = function(slideShowGroup) {
 SlideShowModule.create = async (newSlideShowGroup, result) => {
   try {
     const [res, fields] = await sql.promise().query(
+      
       "INSERT INTO module_slide_show SET internalName = ?, settingId = ?, slideType = ?, navigationIcon = ?, navigationIconWidth = ?, navigationIconFromTop = ?, navigationIconLeftRight = ?, paginationIcon = ?, paginationIconWidth = ?, paginationIconTop = ?, animationType = ?, autoPlayState = ?, autoPlayDuration = ?, multiImageWidth = ?, gapBetweenImages = ?, createdAt = NOW(), updatedAt = NOW()", 
       [newSlideShowGroup.internalName, newSlideShowGroup.setting ? newSlideShowGroup.setting.id : null, newSlideShowGroup.slideType, newSlideShowGroup.navigationIcon, newSlideShowGroup.navigationIconWidth, newSlideShowGroup.navigationIconFromTop, newSlideShowGroup.navigationIconLeftRight, newSlideShowGroup.paginationIcon, newSlideShowGroup.paginationIconWidth, newSlideShowGroup.paginationIconTop, newSlideShowGroup.animationType, newSlideShowGroup.autoPlayState, newSlideShowGroup.autoPlayDuration, newSlideShowGroup.multiImageWidth, newSlideShowGroup.gapBetweenImages]
     );
@@ -51,7 +52,7 @@ SlideShowModule.getById = async (slideShowId, result) => {
       throw { kind: "not_found" };
     }
 
-    const [res1, fields1] = await sql.promise().query(`SELECT * FROM module_slide_show_box WHERE slideShowId = ${slideShowId}`);  
+    const [res1, fields1] = await sql.promise().query(`SELECT * FROM module_slide_show_box WHERE slideShowId = ${slideShowId}`);
     const settingContent = await CommonModel.getSimpleContentById('module_section_setting', res[0].settingId);
     const boxes = [];
     for(let i = 0; i < res1.length; i++) {

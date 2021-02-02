@@ -1,13 +1,13 @@
 const express = require("express");
 const bodyParser = require("body-parser");
-const cors = require('cors')
+const cors = require('cors');
 require('dotenv').config();
 
 const port = process.env.SERVER_PORT || 5000;
 
 const app = express();
 
-app.use(cors())
+app.use(cors());
 // parse requests of content-type: application/json
 app.use(bodyParser.json());
 
@@ -28,7 +28,10 @@ require("./app/routes/module_button.routes.js")(app);
 require("./app/routes/module_menu_group.routes.js")(app);
 require("./app/routes/module_header.routes.js")(app);
 require("./app/routes/module_slide_show.routes.js")(app);
-// require("./app/routes/module_forms.routes.js")(app);
+require("./app/routes/module_form_elements.routes.js")(app);
+require("./app/routes/module_form_builder.routes.js")(app);
+require("./app/routes/module_form_data.routes.js")(app);
+
 
 // set port, listen for requests
 app.listen(port, () => {

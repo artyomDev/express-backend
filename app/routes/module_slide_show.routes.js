@@ -37,8 +37,4 @@ module.exports = app => {
     // Delete All MultiColumnss
    
     app.post("/module_slide_show/delete", slideshowModule.deleteAll);
-
-
-   
-
 }
