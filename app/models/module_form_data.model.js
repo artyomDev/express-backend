@@ -26,7 +26,7 @@ function requests (Admin_email){ mailjet
       ],
       "Subject": "You have received a new Form Submission",
       "TextPart": "",
-      "HTMLPart": "<h3>Nice work, your Web Form has a new Submission. View your <a href='http://34.83.103.207:4000' target='_blank'>New Form Submission</a> details and send the user an email to let them know you have received their details.</h3><br/><h3>New Form Submissions mean people are noticing you.</h3><br/><h3>Keep up the good work.</h3><br/><h3>HANK.</h3>",
+      "HTMLPart": "<p>Nice work, your Web Form has a new Submission. View your <a href='http://34.83.103.207:4000' target='_blank'>New Form Submission</a> details and send the user an email to let them know you have received their details.</p><p>New Form Submissions mean people are noticing you.</p><p>Keep up the good work.</p><br/><p>HANK.</p>",
       "CustomID": "TaskID"
     }
   ]
