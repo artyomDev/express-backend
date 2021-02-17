@@ -1,5 +1,7 @@
 const CardModule = require("../models/module_card.model.js");
 
+const sqldb = require("../models/db.js");
+
 const resCallback = (res, err, data, defaultErrMessage = null) => {
   if (err) {
     if (err.kind === "not_found") {
@@ -32,9 +34,26 @@ exports.create = (req, res) => {
 
 // Retrieve Cards from the database.
 exports.getAll = (req, res) => {
+  if (!req.session.email && !req.cookies.rememberMeEmail) {
+    return res.send('loginFailed');
+  } else if (!req.session.email && req.cookies.rememberMeEmail) {
+    sqldb.promise().query(`SELECT * FROM user WHERE email = "${req.cookies.rememberMeEmail}" AND rememberme = ${true}`).then(function(resp){
+      if(resp[0].length > 0) {
+        req.session.email = req.cookies.rememberMeEmail;
+        Page.getAll(req.body.filter, req.body.sorting, req.body.paging,
+          (err, data) => resCallback(res, err, data, "Some error occurred while retrieving 'page's.")
+        );
+      } else {
+        req.session.email = '';
+        res.cookie('rememberMeEmail', '');
+        return res.send('loginFailed');
+      }
+    });
+  } else {
   CardModule.getAll(req.body.filter, req.body.sorting, req.body.paging,
     (err, data) => resCallback(res, err, data, "Some error occurred while retrieving 'module_card's.")
   );
+  }
 };
 
 // Retrieve Cards Length from the database.

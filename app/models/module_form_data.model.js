@@ -26,7 +26,7 @@ function requests (Admin_email){ mailjet
       ],
       "Subject": "You have received a new Form Submission",
       "TextPart": "",
-      "HTMLPart": "<p>Nice work, your Web Form has a new Submission. View your <a href='http://34.83.103.207:4000' target='_blank'>New Form Submission</a> details and send the user an email to let them know you have received their details.</p><p>New Form Submissions mean people are noticing you.</p><p>Keep up the good work.</p><br/><p>HANK.</p>",
+      "HTMLPart": "<p>Nice work, your Web Form has a new Submission. View your <a href='http://admin.hankcms.com/FormsTable' target='_blank'>New Form Submission</a> details and send the user an email to let them know you have received their details.</p><p>New Form Submissions mean people are noticing you.</p><p>Keep up the good work.</p><br/><p>HANK.</p>",
       "CustomID": "TaskID"
     }
   ]
@@ -66,7 +66,7 @@ FormDataModule.create = async (newFormData, result) => {
 
 FormDataModule.getAll = async (req, result) => {
   try {
-    const [res, fields] = await sql.promise().query(`SELECT formName, createdAt FROM module_form_data GROUP BY formName, createdAt DESC`);
+    const [res, fields] = await sql.promise().query(`SELECT formName, createdAt FROM module_form_data GROUP BY createdAt, formName ORDER BY createdAt DESC`);
     result(null, res);
   } catch (err) {
     result(err, null);

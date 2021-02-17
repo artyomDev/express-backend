@@ -1,5 +1,7 @@
 const SiteSettingModule = require("../models/module_site_setting.model.js");
 
+const sqldb = require("../models/db.js");
+
 const resCallback = (res, err, data, defaultErrMessage = null) => {
   if (err) {
     if (err.kind === "not_found") {

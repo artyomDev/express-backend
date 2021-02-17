@@ -1,5 +1,7 @@
 const Page = require("../models/page.model.js");
 
+const sqldb = require("../models/db.js");
+
 const resCallback = (res, err, data, defaultErrMessage = null) => {
   if (err) {
     if (err.kind === "not_found") {
@@ -21,7 +23,7 @@ const resCallback = (res, err, data, defaultErrMessage = null) => {
 exports.create = (req, res) => {
   // Validate request
   if (!req.body) {
-    res.status(400).send({
+    res.send({
       message: "Content can not be empty!"
     });
   }
@@ -32,9 +34,28 @@ exports.create = (req, res) => {
 
 // Retrieve Pages from the database.
 exports.getAll = (req, res) => {
-  Page.getAll(req.body.filter, req.body.sorting, req.body.paging,
-    (err, data) => resCallback(res, err, data, "Some error occurred while retrieving 'page's.")
-  );
+
+  if (!req.session.email && !req.cookies.rememberMeEmail) {
+    return res.send('loginFailed');
+  } else if (!req.session.email && req.cookies.rememberMeEmail) {
+    sqldb.promise().query(`SELECT * FROM user WHERE email = "${req.cookies.rememberMeEmail}" AND rememberme = ${true}`).then(function(resp){
+      if(resp[0].length > 0) {
+        req.session.email = req.cookies.rememberMeEmail;
+        Page.getAll(req.body.filter, req.body.sorting, req.body.paging,
+          (err, data) => resCallback(res, err, data, "Some error occurred while retrieving 'page's.")
+        );
+      } else {
+        req.session.email = '';
+        res.cookie('rememberMeEmail', '');
+        return res.send('loginFailed');
+      }
+    });
+  } else {
+    Page.getAll(req.body.filter, req.body.sorting, req.body.paging,
+      (err, data) => resCallback(res, err, data, "Some error occurred while retrieving 'page's.")
+    );
+  } 
+  
 };
 
 // Retrieve Page Slugs from the database.
